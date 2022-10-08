@@ -14,6 +14,7 @@ public class DBconfig {
     public DBconfig() {
         ds = new SQLServerDataSource();
         ds.setUser("admin");
+        ds.setPortNumber(1433);
         ds.setPassword("admin");
         ds.setServerName("localhost");
         ds.setDatabaseName("ASSIGNMENT");

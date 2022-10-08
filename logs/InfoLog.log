@@ -46,3 +46,6 @@
 2022-10-07 20:01:39 INFO  App:10 - Query : SELECT * FROM [dbo].[candidate]get all candidates
 2022-10-07 20:01:39 INFO  App:10 - Query : SELECT * FROM [dbo].[candidate]get all candidates
 2022-10-07 20:01:39 INFO  App:10 - Query : SELECT * FROM [dbo].[candidate]get all candidates
+2022-10-08 18:00:48 INFO  App:10 - Query : SELECT * FROM [dbo].[candidate]get all candidates
+2022-10-08 18:00:48 INFO  App:10 - Query : SELECT * FROM [dbo].[candidate]get all candidates
+2022-10-08 18:00:48 INFO  App:10 - Query : SELECT * FROM [dbo].[candidate]get all candidates

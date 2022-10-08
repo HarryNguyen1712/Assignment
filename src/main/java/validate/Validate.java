@@ -8,8 +8,13 @@ import java.util.Scanner;
 import java.util.regex.Pattern;
 
 public class Validate {
+
+    private static final Pattern ISBN_REGEX= Pattern.compile("^([0-9](?:-[0-9]|[0-9]){6,10})$");
     private static final Pattern EMAIL_REGEX = Pattern.compile("^[A-Za-z0-9+_.-]+@fsoft.com.vn");
     private static final Pattern EMAIL_REGEX2 = Pattern.compile("^(.+)@(.+)$");
+    public static boolean validateISBN(String isbn){
+        return ISBN_REGEX.matcher(isbn).matches();
+    }
     public static boolean validateDouble(String strNum){
         if (strNum == null) {
             return false;
@@ -44,12 +49,7 @@ public class Validate {
         return true;
     }
     public static boolean validatePositive(double i){
-        if(i<0){
-            return false;
-        }
-        else {
-            return true;
-        }
+        return !(i < 0);
 
 //        do {
 //            while (!sc.hasNextInt()) {

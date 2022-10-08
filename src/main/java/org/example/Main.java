@@ -5,7 +5,15 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
+        int count =0;
+        for(int i=1;i<=100;i++){
+            if(i%4==0){
+                count++;
+            }
+
+        }
+        System.out.println(count);
+        /*Scanner sc = new Scanner(System.in);
         int number;
         do {
             System.out.println("Please enter a positive number!");
@@ -16,6 +24,6 @@ public class Main {
             number = sc.nextInt();
             System.out.println(number);
         } while (number <= 0);
-        System.out.println("Thank you! Got " + number);
+        System.out.println("Thank you! Got " + number);*/
     }
 }
