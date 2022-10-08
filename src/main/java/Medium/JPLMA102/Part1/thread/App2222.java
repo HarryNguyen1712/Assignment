@@ -5,17 +5,16 @@ import java.util.List;
 
 class Inventory
 {
-    static int qoh =500;
-    static int ordered =0;
+    static int qoh=500;
+   static int ordered =0;
 
     synchronized void request(int order) {
-          {
-             ordered += order;
-             qoh = 500 - ordered;
-             System.out.println("Quantity ordered: "+ order);
-             System.out.println("Quantity on hand:"+ qoh);
-             System.out.println("Total quantify taken away by way of order: "+ordered);
-         }
+         ordered += order;
+         qoh = 500 - ordered;
+         System.out.println("Quantity ordered: "+ order);
+         System.out.println("Quantity on hand:"+ qoh);
+         System.out.println("Total quantify taken away by way of order: "+ordered);
+
 
          try {
              Thread.sleep(1000);
@@ -36,7 +35,7 @@ class OurThread extends Thread
         this.threadName = threadName;
     }
 
-    public void run()
+     public void run()
     {
         inventory.request((int)(Math.random()*100));
     }
