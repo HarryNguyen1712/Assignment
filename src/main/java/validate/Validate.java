@@ -2,8 +2,13 @@ package validate;
 
 import AssignmentPart2.exception.BirthDayException;
 import AssignmentPart2.exception.EmailException;
+import Long.JPLLA201.entities.Airport;
+import Long.JPLLA201.entities.FixedWings;
+import Long.JPLLA201.entities.Helicopters;
 
 import java.time.LocalDate;
+import java.util.List;
+import java.util.Objects;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
@@ -14,6 +19,48 @@ public class Validate {
     private static final Pattern EMAIL_REGEX2 = Pattern.compile("^(.+)@(.+)$");
     public static boolean validateISBN(String isbn){
         return ISBN_REGEX.matcher(isbn).matches();
+    }
+    public static <T> boolean validateID(List<T> objectList, String ID){
+        for(Object o:objectList){
+            if(o instanceof Airport airport){
+                if(airport.getID().equalsIgnoreCase(ID)){
+                    return false;
+                }
+            }
+            else if(o instanceof Helicopters helicopters){
+                if(helicopters.getId().equalsIgnoreCase(ID)){
+                    return false;
+                }
+            }
+            else if(o instanceof FixedWings fixedWings){
+                if(fixedWings.getId().equalsIgnoreCase(ID)){
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+    public static boolean validateLengthString(String s){
+        return s.length()==7;
+    }
+    public static boolean validateRunwaySize(FixedWings fixedWings,Airport airport){
+        return fixedWings.getMinNeededRunwaySize()<airport.getRunwaySize();
+    }
+    public static boolean validateMaxTakeoffWeight (Helicopters helicopters){
+        return helicopters.getMaxTakeoffWeight()<=(1.5*helicopters.getEmptyWeight());
+    }
+    public static boolean validatePrefix(Object o){
+        if(o instanceof Airport airport){
+            return airport.getID().startsWith("AP");
+
+        }
+        else if (o instanceof Helicopters helicopters){
+            return helicopters.getId().startsWith("RW");
+        }
+        else  {
+            return ((FixedWings)o).getId().startsWith("FW");
+        }
+
     }
     public static boolean validateDouble(String strNum){
         if (strNum == null) {
