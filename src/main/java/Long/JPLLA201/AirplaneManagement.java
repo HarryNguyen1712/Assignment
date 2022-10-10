@@ -6,6 +6,7 @@ import Long.JPLLA101.entities.Publications;
 import Long.JPLLA201.Dao.AirportDao;
 import Long.JPLLA201.Dao.FixedWingsDao;
 import Long.JPLLA201.Dao.HelicopterDao;
+import Long.JPLLA201.Enum.FixedWingsTypeEnum;
 import Long.JPLLA201.entities.Airport;
 import Long.JPLLA201.entities.FixedWings;
 import Long.JPLLA201.entities.Helicopters;
@@ -42,12 +43,16 @@ public class AirplaneManagement {
         while (start) {
             System.out.println("Choose what function you want to process:");
             System.out.println("1.Add new airport ");
-            System.out.println("2.Add Magazine");
-            System.out.println("3.Display books and maganizes");
-            System.out.println("4.Add author to book");
-            System.out.println("5.Display top 10 of magazines by volume");
-            System.out.println(".Search book by (isbn, author, publisher)");
-            System.out.println("7.Exit ");
+            System.out.println("2.Add fixed wing to airport");
+            System.out.println("3.Add helicopter to airport");
+            System.out.println("4.Remove helicopter from airport");
+            System.out.println("5.Remove fixed wing from airport");
+            System.out.println("6.Change plane type and min needed runway size of fixed wing airplane");
+            System.out.println("7.Display list of all airport information, sorted by airport ID");
+            System.out.println("8.Display the status of one airport, selected by airport ID");
+            System.out.println("9.Display list of all fixed wing airplanes with its parking airport ID and name");
+            System.out.println("10.Display list of all helicopters with its parking airport ID and name");
+            System.out.println("11.Exit ");
             System.out.println("_________________________");
             scanner=new Scanner(System.in);
             int choice = Integer.parseInt(scanner.nextLine());
@@ -62,44 +67,54 @@ public class AirplaneManagement {
                     }
                     case 2 -> {
                         inner = false;
-                        System.out.println("input ID fixed wing plane");
-                        String ID= scanner.nextLine();
-                        FixedWings fixedWings= fixedWingsDao.findById(ID,fixedWingsList);
+                        String ID= null;
+                        FixedWings fixedWings;
+                        String airportID;
+                        Airport airport;
+                        do{
+                            System.out.println("input ID fixed wing plane");
+                            ID=scanner.nextLine();
+                            fixedWings= fixedWingsDao.findById(ID,fixedWingsList);
+                        }
+                        while(!Validate.validatePrefix(new FixedWings(),ID)||fixedWings==null);
+                        do{
                         System.out.println("input ID airport");
-                        if(fixedWings==null){
-                            continue;
-                        }
-                        String airportID= scanner.nextLine();
-                        Airport airport= airportDao.findById(airportID,airportList);
-                        if(airport==null){
-                            continue;
-                        }
+                        airportID= scanner.nextLine();
+                        airport = airportDao.findById(airportID,airportList);
+
+                        }while (!Validate.validatePrefix(new Airport(), airportID)||airport==null);
+
                         fixedWingsDao.add(fixedWings,airport.getListOfFixedWingAirplaneID(),airport);
                     }
                     case 3 -> {
                         inner = false;
-                        System.out.println("input ID helicopter");
-                        String ID= scanner.nextLine();
-                        Helicopters helicopters= helicopterDao.findById(ID,helicoptersList);
-                        if( helicopters==null){
-                            continue;
+                        String ID=null;
+                        Helicopters helicopters;
+                        do{
+                            System.out.println("input ID helicopter");
+                            ID= scanner.nextLine();
+                            helicopters= helicopterDao.findById(ID,helicoptersList);
                         }
-                        System.out.println("input ID airport");
+                        while(!Validate.validatePrefix(new Helicopters(), ID)||helicopters==null);
+                        String airportID;
+                        Airport airport;
+                        do{
+                            System.out.println("input ID airport");
+                            airportID= scanner.nextLine();
+                            airport = airportDao.findById(airportID,airportList);
 
-                        String airportID= scanner.nextLine();
-                        Airport airport= airportDao.findById(airportID,airportList);
-                        if(airport==null){
-                            continue;
-                        }
+                        }while (!Validate.validatePrefix(new Airport(), airportID)||airport==null);
                         helicopterDao.add(helicopters,airport.getListOfFixedWingAirplaneID());
                     }
                     case 4 -> {
-                        System.out.println("input ID helicopter");
-                        String ID= scanner.nextLine();
-                        Helicopters helicopters= helicopterDao.findById(ID,helicoptersList);
-                        if(helicopters==null){
-                            continue;
+                        String ID=null;
+                        Helicopters helicopters;
+                        do{
+                            System.out.println("input ID helicopter");
+                            ID= scanner.nextLine();
+                            helicopters= helicopterDao.findById(ID,helicoptersList);
                         }
+                        while(!Validate.validatePrefix(new Helicopters(), ID)||helicopters==null);
                         Airport airport= airportDao.findByHelicopterId(ID,airportList);
                         helicopterDao.removeFromAirport(helicopters,airport.getListOfHelicopterID());
                         System.out.println("\n");
@@ -109,12 +124,14 @@ public class AirplaneManagement {
                         System.out.println("-----------------------");
                     }
                     case 5 -> {
-                        System.out.println("input ID fixed wing plane");
-                        String ID= scanner.nextLine();
-                        FixedWings fixedWings= fixedWingsDao.findById(ID,fixedWingsList);
-                        if(fixedWings==null){
-                            continue;
+                        String ID= null;
+                        FixedWings fixedWings;
+                        do{
+                            System.out.println("input ID fixed wing plane");
+                            ID=scanner.nextLine();
+                            fixedWings= fixedWingsDao.findById(ID,fixedWingsList);
                         }
+                        while(!Validate.validatePrefix(new FixedWings(),ID)||fixedWings==null);
 
                         Airport airport= airportDao.findByFixedWingId(ID,airportList);
                         fixedWingsDao.removeFromAirport(fixedWings,airport.getListOfFixedWingAirplaneID());
@@ -123,12 +140,72 @@ public class AirplaneManagement {
                         inner = false;
                     }
                     case 6 -> {
-                        System.out.println("input your criteria");
-                        String criteria= sc.nextLine();
-                        bookDao.searchBookByISBNAuthorPublisher(criteria,bookList);
+                        String ID= null;
+                        FixedWings fixedWings;
+                        do{
+                            System.out.println("input ID fixed wing plane");
+                            ID=scanner.nextLine();
+                            fixedWings= fixedWingsDao.findById(ID,fixedWingsList);
+                        }
+                        while(!Validate.validatePrefix(new FixedWings(),ID)||fixedWings==null);
+                        boolean temp1=true;
+                        String planeType=null;
+                        do{
+                            System.out.println("input new plane type:(CAG-LGR-PRV) ");
+                            planeType= scanner.nextLine();
+
+                            switch (planeType){
+                                case "CAG"-> {
+                                    fixedWings.setPlaneType(FixedWingsTypeEnum.CAG);
+                                    temp1=false;
+                                }
+                                case "LGR"->{
+                                    fixedWings.setPlaneType(FixedWingsTypeEnum.LGR);
+                                    temp1=false;
+                                }
+                                case "PRV"->{
+                                    fixedWings.setPlaneType(FixedWingsTypeEnum.PRV);
+                                    temp1=false;
+                                }
+                                default -> {
+                                    System.out.println("wrong input");
+                                }
+                            }
+                        }
+                        while(temp1);
+                        System.out.println("input min needed runway size of fixed wing airplane");
+                        int minNeededRunwaySize= Integer.parseInt(scanner.nextLine());
+                        fixedWingsDao.changePlaneTypeAndMinNeededRunwaySize(fixedWings,planeType,minNeededRunwaySize);
                         inner = false;
                     }
                     case 7 -> {
+                        inner = false;
+
+                        airportDao.displayAirportSortedByID(airportList);
+                    }
+                    case 8 -> {
+                        inner = false;
+                        Airport airport;
+                        while(true){
+                            System.out.println("input ID airport");
+                            String airportID= scanner.nextLine();
+                            airport= airportDao.findById(airportID,airportList);
+                            if(airport!=null){
+                                break;
+                            }
+                            else System.out.println("airport doesn't exist");
+                        }
+                        airportDao.displayStatusAirportByID(airport);
+                    }
+                    case 9 -> {
+                        inner = false;
+                        fixedWingsDao.displayAllFixedWingsPlane(fixedWingsList,airportList);
+                    }
+                    case 10 -> {
+                        inner = false;
+                        helicopterDao.displayAllHelicopters(helicoptersList,airportList);
+                    }
+                    case 11 -> {
                         inner = false;
                         start = false;
                     }
@@ -136,7 +213,7 @@ public class AirplaneManagement {
                         System.out.println("_________________________");
                         System.out.println("Wrong choice");
                         System.out.println("Try again please");
-                        choice = Integer.parseInt(sc.nextLine());
+                        choice = Integer.parseInt(scanner.nextLine());
                         System.out.println("_________________________");
                     }
                 }

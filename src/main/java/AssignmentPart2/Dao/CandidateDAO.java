@@ -394,7 +394,7 @@ public class CandidateDAO {
 
         try{
             List<Candidate> candidates = getAllCandidate();
-            StringBuilder names= new StringBuilder();
+            StringBuffer names= new StringBuffer();
             for(Candidate cd:candidates){
                 names.append(cd.getFullName()).append(",");
             }

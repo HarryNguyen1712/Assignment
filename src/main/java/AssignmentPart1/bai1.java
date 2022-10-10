@@ -6,6 +6,13 @@ import java.util.Scanner;
 
 public class bai1 {
     static Scanner sc = new Scanner(System.in);
+
+    /**
+     * nhập giá trị đầu vào.
+     *
+     * @param sc the sc
+     * @return the int
+     */
     public static int inputN(Scanner sc){
         System.out.println("Please input n");
         String input = sc.nextLine();
@@ -17,6 +24,11 @@ public class bai1 {
         output=(int)Math.round(Double.parseDouble(input));
         return output;
     }
+    /**
+     * in ra các dấu * theo cấu trúc.
+     *
+     * @param i the
+     */
     public static void bai1(int i){
         for(int n=1;n<=i;n++){
             for(int k=1;k<=n;k++){

@@ -11,19 +11,20 @@ public class AirportDao implements  AirportDaoInterface {
     Scanner scanner=new Scanner(System.in);
     @Override
     public void add(Airport airport, List<Airport>airports) {
-        String ID;
-        while(true){
+        String ID = null;
+        boolean b=true;
+        while(b){
             System.out.println("Input ID:");
             ID= scanner.nextLine();
-            if(Validate.validateID(Collections.singletonList(airports),ID) ){
+            if(!Validate.validateLengthString(ID)||!Validate.validatePrefix(airport,ID)) {
+                System.out.println("invalid format");
+                continue;
+
+            }
+             if(!Validate.validateID(airports,ID) ){
                System.out.println("ID existed");
             }
-            else if(Validate.validateLengthString(ID)||Validate.validatePrefix(ID)) {
-
-                    System.out.println("invalid format");
-
-            }
-            else break;
+            else b=false;
         }
 
         System.out.println("Input name:");
@@ -52,8 +53,8 @@ public class AirportDao implements  AirportDaoInterface {
     }
 
     @Override
-    public void displayStatusAirportByID(String id,List<Airport> airports) {
-        Airport airport= findById(id,airports);
+    public void displayStatusAirportByID(Airport airport) {
+
         if(airport!=null){
             System.out.println(airport.toString());
         }

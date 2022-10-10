@@ -14,7 +14,13 @@ import java.sql.Statement;
 
 public class UpdateController {
     CandidateDAO candidateDAO= new CandidateDAO();
-    public void updateCandidate(Candidate candidate) throws SQLException {
+    /**
+     * Update candidate bằng CONCUR_UPDATABLE của ResultSet .
+     *
+     * @param candidate the candidate
+     * @throws SQLException the sql exception
+     */
+public void updateCandidate(Candidate candidate) throws SQLException {
             candidateDAO.updateCandidate(candidate);
 
         }

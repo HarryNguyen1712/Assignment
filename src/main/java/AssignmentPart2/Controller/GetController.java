@@ -20,17 +20,11 @@ import java.util.List;
  * The type Get controller.
  */
 public class GetController {
-    /**
-     * The D bconfig.
-     */
     DBconfig dBconfig= new DBconfig();
-    /**
-     * The Candidate dao.
-     */
     CandidateDAO candidateDAO=new CandidateDAO();
 
     /**
-     * Gets all candidate.
+     * lấy ra tất cả candidate.
      *
      * @return the all candidate
      * @throws SQLServerException the sql server exception
@@ -40,7 +34,7 @@ public class GetController {
     }
 
     /**
-     * Gets all name.
+     * lấy ra chuỗi các tên candidate bằng String.
      *
      * @return the all name
      * @throws SQLException the sql exception
@@ -50,7 +44,7 @@ public class GetController {
     }
 
     /**
-     * Gets all name by string builder.
+     * lấy ra chuỗi các tên candidate trong database bằng StringBuilder.
      *
      * @return the all name by string builder
      * @throws SQLException the sql exception
@@ -60,7 +54,7 @@ public class GetController {
     }
 
     /**
-     * Get count.
+     * in ra candidate count.
      *
      * @param experienceList the experience list
      * @param fresherList    the fresher list

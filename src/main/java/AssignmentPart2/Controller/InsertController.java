@@ -28,7 +28,7 @@ public class InsertController {
     CandidateDAO candidateDAO= new CandidateDAO();
 
     /**
-     * Insert experience candidate.
+     * Insert experience candidate vào object.
      *
      * @param ex experience
      * @return the experience
@@ -56,7 +56,7 @@ public class InsertController {
 
 
     /**
-     * Insert fresher fresher.
+     * Insert fresher fresher vào object .
      *
      * @param fr the fr
      * @return the fresher
@@ -80,7 +80,7 @@ public class InsertController {
     }
 
     /**
-     * Insert intern intern.
+     * Insert intern intern vào object.
      *
      * @param intern the intern
      * @return the intern
@@ -105,7 +105,7 @@ public class InsertController {
     }
 
     /**
-     * Insert candidate for 3 type candidate.
+     * Nhập thông tin chung của 3 loại candidate .
      *
      * @param d candidate
      */
@@ -174,7 +174,7 @@ public class InsertController {
     }
 
     /**
-     * Add candidate.
+     * thêm candidate CONCUR_UPDATABLE của ResultSet.
      *
      * @param candidate candidate
      * @throws SQLException the sql exception
@@ -184,7 +184,7 @@ public class InsertController {
     }
 
     /**
-     * Insert.
+     * thêm candidate bằng.
      *
      * @param d candidate
      * @throws SQLException the sql exception

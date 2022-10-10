@@ -24,6 +24,7 @@ public class Validate {
         for(Object o:objectList){
             if(o instanceof Airport airport){
                 if(airport.getID().equalsIgnoreCase(ID)){
+
                     return false;
                 }
             }
@@ -49,16 +50,16 @@ public class Validate {
     public static boolean validateMaxTakeoffWeight (Helicopters helicopters){
         return helicopters.getMaxTakeoffWeight()<=(1.5*helicopters.getEmptyWeight());
     }
-    public static boolean validatePrefix(Object o){
+    public static boolean validatePrefix(Object o, String ID){
         if(o instanceof Airport airport){
-            return airport.getID().startsWith("AP");
+            return ID.startsWith("AP");
 
         }
         else if (o instanceof Helicopters helicopters){
-            return helicopters.getId().startsWith("RW");
+            return ID.startsWith("RW");
         }
-        else  {
-            return ((FixedWings)o).getId().startsWith("FW");
+        else {
+            return ID.startsWith("FW");
         }
 
     }
