@@ -29,7 +29,7 @@ public class GetController {
      * @return the all candidate
      * @throws SQLServerException the sql server exception
      */
-    public List<Candidate> getAllCandidate() throws SQLServerException {
+    public List<Candidate> getAllCandidate() throws SQLException {
         return candidateDAO.getAllCandidate();
     }
 

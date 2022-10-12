@@ -1,6 +1,8 @@
 package org.example;
 
+import java.util.HashSet;
 import java.util.Scanner;
+import java.util.Set;
 
 public class Main {
 
@@ -13,6 +15,11 @@ public class Main {
 
         }
         System.out.println(count);
+
+        Set<Integer> integerSet= new HashSet<>();
+        integerSet.add(1);
+        System.out.println(integerSet.add(2));
+        System.out.println(integerSet);
         /*Scanner sc = new Scanner(System.in);
         int number;
         do {

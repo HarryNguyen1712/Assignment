@@ -52,3 +52,46 @@
 2022-10-10 14:27:02 INFO  App:10 - Query : SELECT * FROM [dbo].[candidate]get all candidates
 2022-10-10 14:27:02 INFO  App:10 - Query : SELECT * FROM [dbo].[candidate]get all candidates
 2022-10-10 14:27:02 INFO  App:10 - Query : SELECT * FROM [dbo].[candidate]get all candidates
+2022-10-11 08:52:14 INFO  App:10 - Query : SELECT * FROM [dbo].[candidate]get all candidates
+2022-10-11 08:52:14 INFO  App:10 - Query : SELECT * FROM [dbo].[candidate]get all candidates
+2022-10-11 08:52:14 INFO  App:10 - Query : SELECT * FROM [dbo].[candidate]get all candidates
+2022-10-12 08:59:50 INFO  App:10 - Query : SELECT * FROM [dbo].[candidate]get all candidates
+2022-10-12 08:59:50 INFO  App:10 - Query : SELECT * FROM [dbo].[candidate]get all candidates
+2022-10-12 08:59:50 INFO  App:10 - Query : SELECT * FROM [dbo].[candidate]get all candidates
+2022-10-12 09:00:49 INFO  App:10 - Query : SELECT * FROM candidate inserted
+2022-10-12 09:00:49 INFO  App:10 - Query : SQLServerPreparedStatement:7 insert
+2022-10-12 09:07:44 INFO  App:10 - Query : SELECT * FROM [dbo].[candidate]get all candidates
+2022-10-12 09:07:44 INFO  App:10 - Query : SELECT * FROM [dbo].[candidate]get all candidates
+2022-10-12 09:07:44 INFO  App:10 - Query : SELECT * FROM [dbo].[candidate]get all candidates
+2022-10-12 09:08:08 INFO  App:10 - Query : SELECT * FROM [dbo].[candidate]get all candidates
+2022-10-12 09:08:08 INFO  App:10 - Query : SELECT * FROM [dbo].[candidate]get all candidates
+2022-10-12 09:08:09 INFO  App:10 - Query : SELECT * FROM [dbo].[candidate]get all candidates
+2022-10-12 09:08:39 INFO  App:10 - Query : SELECT * FROM candidate inserted
+2022-10-12 09:08:39 INFO  App:10 - Query : SQLServerPreparedStatement:7 insert
+2022-10-12 09:22:29 INFO  App:10 - Query : SELECT * FROM [dbo].[candidate]get all candidates
+2022-10-12 09:22:29 INFO  App:10 - Query : SELECT * FROM [dbo].[candidate]get all candidates
+2022-10-12 09:22:29 INFO  App:10 - Query : SELECT * FROM [dbo].[candidate]get all candidates
+2022-10-12 09:22:51 INFO  App:10 - Query : SELECT * FROM candidate inserted
+2022-10-12 09:24:21 INFO  App:10 - Query : SELECT * FROM [dbo].[candidate]get all candidates
+2022-10-12 09:24:21 INFO  App:10 - Query : SELECT * FROM [dbo].[candidate]get all candidates
+2022-10-12 09:24:21 INFO  App:10 - Query : SELECT * FROM [dbo].[candidate]get all candidates
+2022-10-12 09:24:43 INFO  App:10 - Query : SELECT * FROM candidate inserted
+2022-10-12 09:24:43 INFO  App:10 - Query : SQLServerPreparedStatement:7 insert
+2022-10-12 10:08:19 INFO  App:10 - Query : SELECT * FROM [dbo].[candidate]get all candidates
+2022-10-12 10:08:19 INFO  App:10 - Query : SELECT * FROM [dbo].[candidate]get all candidates
+2022-10-12 10:08:19 INFO  App:10 - Query : SELECT * FROM [dbo].[candidate]get all candidates
+2022-10-12 10:08:41 INFO  App:10 - Query : SELECT * FROM candidate inserted
+2022-10-12 10:08:41 INFO  App:10 - Query : SQLServerPreparedStatement:7
+2022-10-12 10:24:26 INFO  App:10 - Query : SELECT * FROM [dbo].[candidate]get all candidates
+2022-10-12 10:24:26 INFO  App:10 - Query : SELECT * FROM [dbo].[candidate]get all candidates
+2022-10-12 10:24:26 INFO  App:10 - Query : SELECT * FROM [dbo].[candidate]get all candidates
+2022-10-12 10:24:43 INFO  App:10 - Query : SELECT * FROM candidate inserted
+2022-10-12 10:24:43 INFO  App:10 - Query : INSERT INTO [dbo].[candidate] values(?,?,?,?,?,?,?,?,?,?,?,?,?,?) SQLServerParameterMetaData:1
+2022-10-12 10:26:27 INFO  App:10 - Query : SELECT * FROM [dbo].[candidate]get all candidates
+2022-10-12 10:26:27 INFO  App:10 - Query : SELECT * FROM [dbo].[candidate]get all candidates
+2022-10-12 10:26:27 INFO  App:10 - Query : SELECT * FROM [dbo].[candidate]get all candidates
+2022-10-12 10:26:47 INFO  App:10 - Query : SELECT * FROM candidate inserted
+2022-10-12 10:39:11 INFO  App:10 - Query : SELECT * FROM [dbo].[candidate]get all candidates
+2022-10-12 10:39:11 INFO  App:10 - Query : SELECT * FROM [dbo].[candidate]get all candidates
+2022-10-12 10:39:11 INFO  App:10 - Query : SELECT * FROM [dbo].[candidate]get all candidates
+2022-10-12 10:39:31 INFO  App:10 - Query : SELECT * FROM candidate inserted

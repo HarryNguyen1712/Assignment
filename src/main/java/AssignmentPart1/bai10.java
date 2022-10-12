@@ -68,12 +68,12 @@ public class bai10 {
                     fileWriter.append(sb.toString());
                 }
                 else{
-
                     printStd(parseCsvLine(line));
                 }
                 NoLine++;
 
             }
+
             System.out.println("Error file was  created");
         } catch (IOException e) {
             System.out.println("created failed");

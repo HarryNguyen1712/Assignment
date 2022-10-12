@@ -20,6 +20,13 @@
             <artifactId>mssql-jdbc</artifactId>
             <version>8.2.2.jre13</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/com.googlecode.log4jdbc/log4jdbc -->
+        <dependency>
+            <groupId>com.googlecode.log4jdbc</groupId>
+            <artifactId>log4jdbc</artifactId>
+            <version>1.2</version>
+        </dependency>
+
         <!-- https://mvnrepository.com/artifact/javax/javaee-web-api -->
         <dependency>
             <groupId>javax</groupId>
@@ -38,6 +45,14 @@
             <artifactId>log4j</artifactId>
             <version>1.2.17</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/p6spy/p6spy -->
+        <dependency>
+            <groupId>p6spy</groupId>
+            <artifactId>p6spy</artifactId>
+            <version>3.9.1</version>
+        </dependency>
+
+
         <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-csv -->
         <dependency>
             <groupId>org.apache.commons</groupId>

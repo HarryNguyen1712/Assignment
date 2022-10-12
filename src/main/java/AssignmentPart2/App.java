@@ -26,42 +26,6 @@ public class App {
     static UpdateController update= new UpdateController();
 
     public static void main(String[] args) throws ClassNotFoundException, SQLException, InvalidNameException {
-        /*Name objectName = new CompositeName("java:comp/env/jdbc");
-        Enumeration<String> elements = objectName.getAll();
-        while(elements.hasMoreElements()) {
-            System.out.println(elements.nextElement());
-        }
-        ConnectionPool connectionPool = ConnectionPool.getInstance();
-        Connection connection=connectionPool.getConnection();*/
-
-        /*List<Candidate> candidateSet= new ArrayList<>();
-        Candidate cd1=new Candidate(1,null,LocalDate.parse("1999-12-17"),null,null,1,null);
-        Candidate aaaaa=new Fresher(1,null,LocalDate.parse("1999-12-17"),null,null,1,null,"2023","gioi",null);
-        Candidate cd2=new Candidate(2,null,LocalDate.parse("2000-12-17"),null,null,1,null);
-        Candidate cd3=new Candidate(3,null,LocalDate.parse("1988-12-17"),null,null,0,null);
-        Candidate cd4=new Candidate(4,null,LocalDate.parse("2001-12-17"),null,null,0,null);
-        Candidate cd5=new Candidate(5,null,LocalDate.parse("2000-12-17"),null,null,2,null);
-        Candidate cd6=new Candidate(6,null,LocalDate.parse("2002-12-17"),null,null,2,null);
-        candidateSet.add(cd1);
-        candidateSet.add(cd2);
-        candidateSet.add(cd3);
-        candidateSet.add(cd4);
-        candidateSet.add(cd5);
-        candidateSet.add(cd6);
-
-        for(Candidate cd: candidateSet){
-
-            System.out.println(cd.getCandidateType()+"  "+cd.getBirthDay().getYear());
-        }
-        System.out.println("----------------------------");
-        candidateSet.sort(Comparator.comparing(Candidate::getCandidateType).thenComparing(Candidate::getBirthDay));
-        for(Candidate cd: candidateSet){
-
-            System.out.println(cd.getCandidateType()+"  "+cd.getBirthDay().getYear());
-        }
-        System.out.println(((Fresher) aaaaa).getGraduationRank());*/
-
-
         System.out.println(get.getAllName());;
         System.out.println(get.getAllNameByStringBuilder());
         Set<Candidate> candidates = new HashSet<>(get.getAllCandidate());
@@ -83,7 +47,9 @@ public class App {
             System.out.println("3.Intern");
             System.out.println("4.Sort list candidate");
             System.out.println("5.Update candidate");
-            System.out.println("5.Exit ");
+            System.out.println("6.get all name using string");
+            System.out.println("7.get all name using string buffer");
+            System.out.println("8.Exit ");
             System.out.println("_________________________");
             sc=new Scanner(System.in);
             int choice = Integer.parseInt(sc.nextLine());

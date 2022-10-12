@@ -6,7 +6,11 @@ import Long.JPLLA201.entities.Airport;
 import Long.JPLLA201.entities.FixedWings;
 import Long.JPLLA201.entities.Helicopters;
 
+import java.text.ParseException;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
+import java.time.format.DateTimeParseException;
 import java.util.List;
 import java.util.Objects;
 import java.util.Scanner;
@@ -24,7 +28,6 @@ public class Validate {
         for(Object o:objectList){
             if(o instanceof Airport airport){
                 if(airport.getID().equalsIgnoreCase(ID)){
-
                     return false;
                 }
             }
@@ -123,4 +126,5 @@ public class Validate {
             throw new EmailException();
         }
     }
+
 }

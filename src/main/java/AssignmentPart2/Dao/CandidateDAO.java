@@ -1,24 +1,29 @@
 package AssignmentPart2.Dao;
 
 import AssignmentPart2.Configuration.DBconfig;
+import AssignmentPart2.Configuration.HikariCPDataSource;
 import AssignmentPart2.Utilis.Log4j;
 import AssignmentPart2.entities.*;
 import AssignmentPart2.exception.BirthDayException;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
+import com.microsoft.sqlserver.jdbc.SQLServerPreparedStatement;
+import com.microsoft.sqlserver.jdbc.SQLServerStatement;
+import com.microsoft.sqlserver.jdbc.SQLServerStatementColumnEncryptionSetting;
+import org.apache.log4j.lf5.Log4JLogRecord;
+import org.apache.log4j.xml.Log4jEntityResolver;
 import validate.Validate;
 
 import java.sql.*;
+import java.sql.Date;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 import static validate.Validate.validateBirthDay;
 
 public class CandidateDAO {
     static Scanner sc = new Scanner(System.in);
     static DBconfig dBconfig = new DBconfig();
+
     /*public void getCount(List<Experience> experienceList, List<Fresher> fresherList, List<Intern>internList){
         System.out.println("Experience:");
         for(Experience ex: experienceList){
@@ -124,11 +129,13 @@ public class CandidateDAO {
 
     }*/
     public void updateCandidate(Candidate candidate) throws SQLException {
-        Connection connection = dBconfig.getInstance();
+
         String sql= "SELECT * FROM candidate";
-        Statement statement= connection.createStatement(ResultSet.TYPE_FORWARD_ONLY,ResultSet.CONCUR_UPDATABLE);
-        ResultSet rs= statement.executeQuery(sql);
-        try{
+
+        try(Connection connection = HikariCPDataSource.getConnection();
+            Statement statement= connection.createStatement(ResultSet.TYPE_FORWARD_ONLY,ResultSet.CONCUR_UPDATABLE);
+            ResultSet rs= statement.executeQuery(sql);
+                ){
             while(rs.next()){
                 // Lay du lieu boi su dung ten cot
                 if(rs.getInt("candidateID")==candidate.getCandidateID()){
@@ -186,69 +193,76 @@ public class CandidateDAO {
 
     }
     public void addCandidate(Candidate candidate) throws SQLException {
-        Connection connection = dBconfig.getInstance();
         String sql= "SELECT * FROM candidate";
-        Statement statement= connection.createStatement(ResultSet.TYPE_FORWARD_ONLY,ResultSet.CONCUR_UPDATABLE);
-        ResultSet rs= statement.executeQuery(sql);
+        try(Connection connection = HikariCPDataSource.getConnection();
+            Statement statement= connection.createStatement(ResultSet.TYPE_FORWARD_ONLY,ResultSet.CONCUR_UPDATABLE);
+            ResultSet rs= statement.executeQuery(sql);){
+            rs.moveToInsertRow();
+            rs.updateInt("candidateID",candidate.getCandidateID());
+            rs.updateString("fullName",candidate.getFullName());
+            rs.updateDate("birthDay",java.sql.Date.valueOf(candidate.getBirthDay()));
+            rs.updateString("phone", candidate.getPhone());
+            rs.updateString("email",candidate.getEmail());
+            rs.updateInt("candidateType",candidate.getCandidateType());
+            if(candidate.getCandidateType()==0){
+                Experience ex= (Experience) candidate;
+                rs.updateInt(6,0);
+                rs.updateInt(7,ex.getExpInYear());
+                rs.updateString(8,ex.getProSkill());
+                rs.updateString(9,null);
+                rs.updateString(10,null);
+                rs.updateString(11,null);
+                rs.updateString(12,null);
+                rs.updateString(13,null);
+                rs.updateString(14,null);
+
+            } else if (candidate.getCandidateType() ==1) {
+                Fresher fr= (Fresher) candidate;
+                rs.updateInt(6,1);
+                rs.updateInt(7,0);
+                rs.updateString(8,null);
+                rs.updateString(9,fr.getGraduationDate());
+                rs.updateString(10,fr.getGraduationRank());
+                rs.updateString(11,fr.getEducation());
+                rs.updateString(12,null);
+                rs.updateString(13,null);
+                rs.updateString(14,null);
+
+            }
+            else{
+                Intern it= (Intern) candidate;
+                rs.updateInt(6,2);
+                rs.updateInt(7,0);
+                rs.updateString(8,null);
+                rs.updateString(9,null);
+                rs.updateString(10,null);
+                rs.updateString(11,null);
+                rs.updateString(12,it.getMajors());
+                rs.updateString(13,it.getSemester());
+                rs.updateString(14,it.getUniversityName());
+            }
+            /*rs.insertRow();*/
+            Log4j.info(sql+" inserted");
+        }
+        catch (SQLException e){
+            Log4j.error(e.getMessage());
+        }
+
 
         // Lay du lieu boi su dung ten cot
-        rs.moveToInsertRow();
-        rs.updateInt("candidateID",candidate.getCandidateID());
-        rs.updateString("fullName",candidate.getFullName());
-        rs.updateDate("birthDay",java.sql.Date.valueOf(candidate.getBirthDay()));
-        rs.updateString("phone", candidate.getPhone());
-        rs.updateString("email",candidate.getEmail());
-        rs.updateInt("candidateType",candidate.getCandidateType());
-        if(candidate.getCandidateType()==0){
-            Experience ex= (Experience) candidate;
-            rs.updateInt(6,0);
-            rs.updateInt(7,ex.getExpInYear());
-            rs.updateString(8,ex.getProSkill());
-            rs.updateString(9,null);
-            rs.updateString(10,null);
-            rs.updateString(11,null);
-            rs.updateString(12,null);
-            rs.updateString(13,null);
-            rs.updateString(14,null);
 
-        } else if (candidate.getCandidateType() ==1) {
-            Fresher fr= (Fresher) candidate;
-            rs.updateInt(6,1);
-            rs.updateInt(7,0);
-            rs.updateString(8,null);
-            rs.updateString(9,fr.getGraduationDate());
-            rs.updateString(10,fr.getGraduationRank());
-            rs.updateString(11,fr.getEducation());
-            rs.updateString(12,null);
-            rs.updateString(13,null);
-            rs.updateString(14,null);
 
-        }
-        else{
-            Intern it= (Intern) candidate;
-            rs.updateInt(6,2);
-            rs.updateInt(7,0);
-            rs.updateString(8,null);
-            rs.updateString(9,null);
-            rs.updateString(10,null);
-            rs.updateString(11,null);
-            rs.updateString(12,it.getMajors());
-            rs.updateString(13,it.getSemester());
-            rs.updateString(14,it.getUniversityName());
-        }
-        rs.insertRow();
-        Log4j.info(sql+" inserted");
 
     }
-    public List<Candidate> getAllCandidate() throws SQLServerException {
-        Connection connection = dBconfig.getInstance();
+    public List<Candidate> getAllCandidate() throws SQLException {
+
         List<Candidate> candidates= new ArrayList<>();
         String sql= "SELECT * FROM [dbo].[candidate]";
-        try {
+        try (Connection connection = HikariCPDataSource.getConnection();
+             PreparedStatement ps = connection.prepareStatement(sql);
+             ResultSet rs =  ps.executeQuery();
 
-            PreparedStatement ps = connection.prepareStatement(sql);
-            ResultSet rs = null;
-            rs= ps.executeQuery();
+             ){
             while(rs.next()){
                 int candidateID= rs.getInt("candidateID");
                 String fullName= rs.getString("fullName");
@@ -311,9 +325,9 @@ public class CandidateDAO {
         int i=d.getCandidateType() ;
         addCandidate(d);
 
-//        prepareSta(d, conn, sql, i);
+        prepareSta(d, conn, sql, i);
 
-        //insertCertificate(d.getCertificateList(),d.getCandidateID());
+//        insertCertificate(d.getCertificateList(),d.getCandidateID());
     }
     public void insertCertificate(List<Certificate> d, int i) throws SQLServerException {
         Connection conn = dBconfig.getInstance();
@@ -367,7 +381,8 @@ public class CandidateDAO {
                 ps.setString(14,it.getUniversityName());
             }
             ps.executeUpdate();
-            Log4j.info(sql+" insert");
+
+            Log4j.info(sql);
         } catch (SQLException e) {
             e.printStackTrace();
             Log4j.error(e.getMessage());

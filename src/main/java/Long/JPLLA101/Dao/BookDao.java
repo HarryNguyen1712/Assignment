@@ -10,6 +10,7 @@ import java.util.*;
 public class BookDao implements BookDaoInterface{
     Scanner scanner= new Scanner(System.in);
 
+
     @Override
     public void add(Book book, List<Publications> publicationsList) {
         System.out.println("Input publication year:");
